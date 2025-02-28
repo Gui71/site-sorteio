@@ -1,0 +1,311 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url("../static/background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+    padding: 12px;
+    color: white;
+}
+
+.container {
+    max-width: 750px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: auto;
+    text-align: center;
+    color: black;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: red;
+    line-height: 1em;
+    margin: 15px 0 -10px 0;
+}
+
+h3 em {
+    font-size: 0.65em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+button {
+    width: 95%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.success_container {
+    background: url("../static/background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inscritos-container {
+    max-width: 90%; /* Aumentar a largura da caixa */
+    width: 900px;  /* Definir uma largura maior apenas para essa página */
+    overflow-x: auto; /* Evita que a tabela estoure a borda */
+}
+
+.inscritos-container table {
+    width: 100%; /* A tabela ocupa toda a largura disponível */
+    border-collapse: collapse;
+    background: white;
+    color: black;
+}
+
+.inscritos-container th, .inscritos-container td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.inscritos-container th {
+    background: #f4f4f4;
+    font-weight: bold;
+}
+
+.inscritos-container a {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #28a745;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 15px;
+    font-style: italic;
+    display: inline-block;
+    text-decoration-color: white;
+    color: white;
+}
+
+.botoes-acao {
+    display: flex; /* Alinha os botões horizontalmente */
+    flex-direction: column; /* Alinha os botões verticalmente */
+    gap: 5px; /* Espaçamento entre os botões */
+    margin: -6px -5px -6px -5px;    
+}
+  
+.botoes-acao button {
+    width: 80px; /* Largura dos botões */
+    height: 30px; /* Altura dos botões */
+    font-size: 14px; /* Tamanho da fonte dos botões */
+    margin: auto;
+    line-height: 5px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+  
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+  
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.alert {
+    background-color: #ffcccc;
+    color: #d8000c;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #d8000c;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.checkbox-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 100px 0 0;
+    text-align: left;
+    font-size: 14px;
+}
+
+.checkbox-container input {
+    margin: 17px;
+    transform: scale(1.2)
+}
+
+.checkbox-container label{
+    display: auto;
+}
+
+::placeholder {
+    color: auto;
+    font-weight: bold;
+}
+
+.botao-flutuante {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed; /* Mantém fixo na tela */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    
+    bottom: 20px;
+    left: 290px;
+    
+    background-color: #28a745; /* Cor de fundo */
+    padding: 10px 7px 29px 7px;
+    border-radius: 50%;
+    border-bottom: 5px solid transparent;
+    cursor: pointer;
+    width: 110px;
+    height: 110px;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    overflow: hidden; /* Esconde elementos extras */
+    animation: piscar 4s ease-in-out infinite;
+}
+
+.botao-flutuante:hover {
+    background-color: #64a8f0;
+    border-color: rgb(211, 99, 19);
+    transform: scale(1.1);
+    animation-play-state: paused;
+}
+
+.botao-flutuante a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+@media (max-width: 1064px) {
+    .botao-flutuante {
+        bottom: 15px;
+        left: 15px; 
+        width: 100px;
+        height: 100px;
+        font-size: 12px;
+    }
+}
+
+@keyframes piscar {
+    0% {
+        opacity: 1;
+        border-color: #ce0303; 
+    }    
+    50% {
+        opacity: 0.8;
+        border-color: transparent;
+    }
+    100% {
+        opacity: 1;
+        border-color: #ce0303;
+    }
+}
+
+.rwb-tooltip {
+    background-color: lightgreen;
+}
+
+#robbu-whatsapp-button {
+    left: 78.2%;
+}
+
+@media (max-width: 1064px) {
+    #robbu-whatsapp-button {
+        left: 87%;
+        top: 88%;
+    }
+}
+
+.seta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    top: 610px;
+    left: 10.9%;
+    font-size: 80px;
+    color: #ff0000;
+    background-color: none;
+    border-color: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 5px;
+
+    animation: vai-e-vem 1s linear infinite;
+}
+
+@keyframes vai-e-vem {
+    0% {
+      transform: translateX(0); /* Posição inicial */
+    }
+    50% {
+      transform: translateX(20px); /* Move para a direita */
+    }
+    100% {
+      transform: translateX(0); /* Volta para a posição inicial */
+    }
+}
+
+@media (max-width: 1064px) {
+    .seta {
+        display: flex;
+        left: -20px;
+        top: 470px;
+        font-size: 80px;
+        color: yellow;
+        transform: rotate(45deg);
+        transform-origin: center;
+        animation: none;
+    }
+}

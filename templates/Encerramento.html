@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Inscrições Encerradas</title>
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                background-color: #f8f8f8;
+                padding: 10%;
+                background: url("../static/background.jpg") no-repeat center center fixed;
+                background-size: cover;
+            }
+
+            .mensagem {
+                background: #ff4d4d;
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                display: inline-block;
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .rwb-tooltip {
+                background-color: lightgreen;
+            }
+
+            #robbu-whatsapp-button {
+                left: 78.2%;
+            }
+
+            @media (max-width: 1064px) {
+                #robbu-whatsapp-button {
+                    left: 75%;
+                    top: 25%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="mensagem">
+            <h1>⚠️ Inscrições Encerradas ⚠️</h1>
+            <p>O prazo para se inscrever terminou no dia<strong> 17/04/2025 às 18h</strong>.</p>
+            <p>Agradecemos sua participação! 😁😎</p>
+            <p>Acompanhem o seu sindicato, contem conosco!</p>
+            <p>Fiquem atentos aos próximos sorteios ❕❕❕</p>
+            <a target="_blank" href="https://www.instagram.com/senalbariocapital/#">Clique aqui e Acesse nosso INSTAGRAM</a>
+        </div>
+        <link rel="stylesheet" href="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-button.css">
+            <a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=5521996102233&text=Fale%20conosco%20pelo%20WhatsApp">
+            <div class="rwb-tooltip"><strong>Dúvidas? Fale conosco pelo WhatsApp.</strong></div>
+            <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
+            </a>
+    </body>
+</html>

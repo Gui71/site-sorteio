@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENALBA Rio Capital - Sorteio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").addEventListener("submit", function (event) {
+                let bairro = document.getElementById("bairro").value.trim().toLowerCase(); // Converter para minúsculas para evitar erro de digitação
+                if (!bairro.includes("Rio de Janeiro, RJ") && !bairro.includes("RJ, RJ") && !bairro.includes("rio de janeiro, rj") && !bairro.includes("rj, rj") && !bairro.includes("Rio de janeiro, Rj") && !bairro.includes("Rj, Rj") && !bairro.includes("RIO DE JANEIRO, RJ") && !bairro.includes("Rio de janeiro, rj") && !bairro.includes("Rio de Janeiro,RJ") && !bairro.includes("RJ,RJ") && !bairro.includes("rio de janeiro,rj") && !bairro.includes("rj,rj") && !bairro.includes("Rio de janeiro,Rj") && !bairro.includes("Rj,Rj") && !bairro.includes("RIO DE JANEIRO,RJ") && !bairro.includes("Rio de janeiro,rj") && !bairro.includes("Rio de Janeiro RJ") && !bairro.includes("RJ RJ") && !bairro.includes("rio de janeiro rj") && !bairro.includes("rj rj") && !bairro.includes("Rio de janeiro Rj") && !bairro.includes("Rj Rj") && !bairro.includes("RIO DE JANEIRO RJ") && !bairro.includes("Rio de janeiro rj") && !bairro.includes("Rio de Janeiro-RJ") && !bairro.includes("RJ-RJ") && !bairro.includes("rio de janeiro-rj") && !bairro.includes("rj-rj") && !bairro.includes("Rio de janeiro-Rj") && !bairro.includes("Rj-Rj") && !bairro.includes("RIO DE JANEIRO-RJ") && !bairro.includes("Rio de janeiro-rj") && !bairro.includes("Rio de Janeiro - RJ") && !bairro.includes("RJ - RJ") && !bairro.includes("rio de janeiro - rj") && !bairro.includes("rj - rj") && !bairro.includes("Rio de janeiro - Rj") && !bairro.includes("Rj - Rj") && !bairro.includes("RIO DE JANEIRO - RJ") && !bairro.includes("Rio de janeiro - rj")) {
+                    alert("O Bairro da Empresa deve ser no 'Rio de Janeiro'! / Exemplo:'Tijuca, RJ, RJ'");
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>SORTEIO SENALBA RIO CAPITAL</h1>
+        <h1>Vale Viagem + prêmios - 2025</h1>
+        <p>Inscreva-se preenchendo os campos abaixo:</p>
+        <button class="botao-flutuante">
+            <span><br><a href="https://senalbariocapital.com.br/regras-para-o-sorteio-2025-vale-viagem-senalba-rio-capital/" target="_blank">Para acessar as regras do sorteio CLIQUE AQUI
+            </a></span>
+        </button>
+        <p class="seta"><strong>&#x21E8;</strong></p>
+
+         <!-- Exibir alerta caso haja erro -->
+         {% if request.args.get('erro') %}
+         <div class="alert">
+             {{ request.args.get('erro') }}
+         </div>
+         {% endif %}
+
+        <form action="/inscrever" method="POST">
+            <input type="text" name="nome" placeholder="NOME COMPLETO" required>
+            <input type="text" name="rg" placeholder="RG (apenas números)" required pattern="^\d+$" title="O RG deve conter apenas números e não são permitidos espaços ou pontos">
+            <input type="text" name="cpf" placeholder="CPF (11 números, apenas números)" required pattern="\d{11}" title="O CPF deve conter exatamente 11 números e não são permitidos espaços ou pontos">
+            <input type="text" name="celular" placeholder="NÚMERO DE CELULAR (com DDD, apenas números, Exemplo: 21912345678)" required pattern="\d{11}" title="O celular deve conter exatamente 11 números, já contando com o DDD, e não são permitidos espaços ou pontos. Exemplo: 21912345678">
+            <input type="email" name="email" placeholder="E-MAIL" required pattern=".*\.+.*" title="O email deve conter a terminação (Exemplo: .com.br/.com/.org/.terra / etc)">
+            <input type="text" name="empresa" placeholder="EMPRESA (NOME COMLETO DA EMPRESA)" required>
+            <input type="text" name="bairro" placeholder="BAIRRO da *EMPRESA*, CIDADE E ESTADO" required id="bairro">
+
+            <!-- Caixa Obrigatória -->
+            <div class="checkbox-container">
+                <input type="checkbox" id="autorizacao_dados" name="autorizacao_dados" required>
+                <label for="autorizacao_dados">
+                    <strong>Autorizo que o SENALBA Rio Capital utilize/salve meus dados para fins de processamento em bancos de dados internos e para o sorteio.</strong>
+                    <br> <em>(OBS: Garantimos o sigilo dos seus dados! O uso é exclusivamente para a base do SENALBA Rio Capital).</em>
+                </label>
+            </div>
+            
+            <!---->
+            <div class="checkbox-container">
+                <input type="checkbox" id="autorizacao_imagem" name="autorizacao_imagem">
+                <label for="autorizacao_imagem">
+                    <strong>Autorizo o uso da minha imagem para fins de divulgação nas redes do SENALBA Rio Capital (Instagram/Site).</strong>
+                    <br> <em>(OBS: Opcional).</em>
+                </label>
+            </div>
+
+            <div>
+                <h3><u><strong>*A não comprovação da contribuição junto ao sindicato não dará direito ao prêmio!</strong></u>
+                    <br> <em>(OBS: Um prêmio por CPF)</em>
+                </h3>
+            </div>
+            
+            <button type="submit">Inscrever-se</button>
+        </form>
+    </div>
+    <link rel="stylesheet" href="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-button.css">
+<a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=5521996102233&text=Fale%20conosco%20pelo%20WhatsApp">
+  <div class="rwb-tooltip"><strong>Dúvidas? Fale conosco pelo WhatsApp.</strong></div>
+  <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
+</a>
+</body>
+</html>

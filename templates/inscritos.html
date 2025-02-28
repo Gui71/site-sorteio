@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista de Inscritos</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+        <script>
+            function mudarPagina(pagina) {
+                // Constrói a URL com o número da página
+                const url = new URL(window.location.href);
+                url.searchParams.set('pagina', pagina);
+                window.location.href = url.href;
+            }
+        </script>
+        <script>
+            function gerarPdfIndividual(id) {
+                const url = `/exportar_pdf_individual/${id}`;
+                window.open(url, '_blank');
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container inscritos-container">
+            <h1>Lista de Inscritos</h1>
+            <table border="1">
+                <tr>
+                    <th>Nome</th>
+                    <th>RG</th>
+                    <th>CPF</th>
+                    <th>Celular</th>
+                    <th>Email</th>
+                    <th>Empresa</th>
+                    <th>Bairro</th>
+                    <th>Ações</th> <!-- Nova coluna para remover cadastros -->
+                </tr>
+                {% for inscrito in inscritos %}
+                <tr>
+                    <td>{{ inscrito[1] }}</td>
+                    <td>{{ inscrito[2] }}</td>
+                    <td>{{ inscrito[3] }}</td>
+                    <td>{{ inscrito[4] }}</td>
+                    <td>{{ inscrito[5] }}</td>
+                    <td>{{ inscrito[6] }}</td>
+                    <td>{{ inscrito[7] }}</td>
+                    <td>
+                        <div class="botoes-acao">
+                            <form action="{{ url_for('remover_inscrito', id=inscrito[0]) }}" method="POST">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este cadastros?');">Remover</button>
+                            </form>
+                            <button type="button" onclick="gerarPdfIndividual({{ inscrito[0] }})">PDF</button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="pagination">
+                {% if pagina_atual > 1 %}
+                <a href="#" onclick="mudarPagina({{ pagina_atual - 1 }})">&laquo; Anterior</a>
+                {% endif %}
+    
+                {% for pagina in range(1, num_paginas + 1) %}
+                <a href="#" onclick="mudarPagina({{ pagina }})"
+                    {% if pagina == pagina_atual %}class="active"{% endif %}>
+                    {{ pagina }}
+                </a>
+                {% endfor %}
+    
+                {% if pagina_atual <num_paginas %}
+                <a href="#" onclick="mudarPagina({{ pagina_atual + 1}})">Próximo &raquo;</a>
+                {% endif %}
+            </div>
+            <a href="{{ url_for('exportar_planilha') }}">Baixar Planilha</a>
+            <a href="{{ url_for('exportar_pdf', pagina=pagina_atual) }}" target="_blank">Baixar PDF da página {{ pagina_atual }}</a>
+        </div>
+    </body>
+</html>
