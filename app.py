@@ -60,7 +60,7 @@ def logout():
 fuso_horario = pytz.timezone('America/Sao_Paulo')
 
 # Data e hora limite com fuso correto
-DATA_FINAL = fuso_horario.localize(datetime(2025, 4, 17, 18, 0))
+DATA_FINAL = fuso_horario.localize(datetime(2025, 4, 17, 17, 59))
 
 @app.route('/')
 def index():
@@ -133,6 +133,18 @@ def remover_inscrito(id):
         conn.commit()
     return redirect(url_for('inscritos'))
 
+# Corta o texto caso ele exceda o limite da celula (será colado um limite na largura da célula até onde o texto pode ir)
+def truncar_texto(pdf, texto, largura_maxima):
+    #Guarda o texto original para comparar depois
+    texto_original = texto
+
+    # Trunca o texto para caber dentro da largura máxima da célula e adiciona '...' no final.
+    while pdf.get_string_width(texto + "...") > largura_maxima and len (texto) > 0:
+        texto = texto[:-1] # Remove um caractere por vez
+
+    # Se o texto foi cortado, adiciona "..."
+    return texto + "..." if texto != texto_original else texto
+
 @app.route('/exportar_pdf_individual/<int:id>')
 @login_required
 def exportar_pdf_individual(id):
@@ -157,8 +169,10 @@ def exportar_pdf_individual(id):
     pdf.ln()
 
     for rotulo1, valor1, rotulo2, valor2 in dados_inscrito:
-        pdf.cell(95, 10, f"{rotulo1} {valor1}", 1, align='L')
-        pdf.cell(95, 10, f"{rotulo2} {valor2}", 1, align='L')
+        largura_celula = 77 # Define a largura máxima da célula
+
+        pdf.cell(95, 10, f"{rotulo1} {truncar_texto(pdf, valor1, largura_celula)}", 1, align='L')
+        pdf.cell(95, 10, f"{rotulo2} {truncar_texto(pdf, valor2, largura_celula)}", 1, align='L')
         pdf.ln()
 
     pdf.cell(190, 9, "*A não comprovação da contribuição junto ao sindicato não dará direito ao prêmio!", 1, align='C')
@@ -207,10 +221,12 @@ def exportar_pdf(pagina):
         pdf.ln()
 
         for rotulo1, valor1, rotulo2, valor2 in dados_inscrito:
+            largura_celula = 77 # Define a largura máxima da célula
+
             # Coluna A: Rótulo 1
-            pdf.cell(95, 10, f"{rotulo1} {valor1}", 1, align='L')
+            pdf.cell(95, 10, f"{rotulo1} {truncar_texto(pdf, valor1, largura_celula)}", 1, align='L')
             # Coluna B: Valor 1
-            pdf.cell(95, 10, f"{rotulo2} {valor2}", 1, align='L')
+            pdf.cell(95, 10, f"{rotulo2} {truncar_texto(pdf, valor2, largura_celula)}", 1, align='L')
             pdf.ln()
 
         #Linha de entendimento da contribuição junto ao sindicato
