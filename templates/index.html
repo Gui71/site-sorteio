@@ -13,7 +13,7 @@
                     .toLowerCase()
                     .replace(/[\s\-,.]+/g, ''); // Converter para minúsculas, e remove caracteres especiais
                 
-                if (!bairro.includes("riodejaneirorj") && !bairro.includes("rjrj")) {
+                if (!bairro.endsWith("riodejaneirorj") && !bairro.endsWith("rjrj") && !bairro.endsWith("riodejaneiroriodejaneiro")) {
                     alert("O Bairro da Empresa deve ser no município do 'Rio de Janeiro'! / Exemplo:'Centro, RJ, RJ'");
                     event.preventDefault();
                 }
