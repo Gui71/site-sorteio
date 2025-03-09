@@ -9,7 +9,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelector("form").addEventListener("submit", function (event) {
-                let bairro = document.getElementById("bairro").value.trim().toLowerCase().replace(/[\s\-,.]+/g, ''; // Converter para minúsculas, e remove caracteres especiais
+                let bairro = document.getElementById("bairro").value.trim()
+                    .toLowerCase()
+                    .replace(/[\s\-,.]+/g, ''); // Converter para minúsculas, e remove caracteres especiais
                 
                 if (!bairro.includes("riodejaneirorj") && !bairro.includes("rjrj")) {
                     alert("O Bairro da Empresa deve ser no município do 'Rio de Janeiro'! / Exemplo:'Centro, RJ, RJ'");
