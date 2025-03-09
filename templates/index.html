@@ -9,9 +9,10 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelector("form").addEventListener("submit", function (event) {
-                let bairro = document.getElementById("bairro").value.trim().toLowerCase(); // Converter para minúsculas para evitar erro de digitação
-                if (!bairro.includes("Rio de Janeiro, RJ") && !bairro.includes("RJ, RJ") && !bairro.includes("rio de janeiro, rj") && !bairro.includes("rj, rj") && !bairro.includes("Rio de janeiro, Rj") && !bairro.includes("Rj, Rj") && !bairro.includes("RIO DE JANEIRO, RJ") && !bairro.includes("Rio de janeiro, rj") && !bairro.includes("Rio de Janeiro,RJ") && !bairro.includes("RJ,RJ") && !bairro.includes("rio de janeiro,rj") && !bairro.includes("rj,rj") && !bairro.includes("Rio de janeiro,Rj") && !bairro.includes("Rj,Rj") && !bairro.includes("RIO DE JANEIRO,RJ") && !bairro.includes("Rio de janeiro,rj") && !bairro.includes("Rio de Janeiro RJ") && !bairro.includes("RJ RJ") && !bairro.includes("rio de janeiro rj") && !bairro.includes("rj rj") && !bairro.includes("Rio de janeiro Rj") && !bairro.includes("Rj Rj") && !bairro.includes("RIO DE JANEIRO RJ") && !bairro.includes("Rio de janeiro rj") && !bairro.includes("Rio de Janeiro-RJ") && !bairro.includes("RJ-RJ") && !bairro.includes("rio de janeiro-rj") && !bairro.includes("rj-rj") && !bairro.includes("Rio de janeiro-Rj") && !bairro.includes("Rj-Rj") && !bairro.includes("RIO DE JANEIRO-RJ") && !bairro.includes("Rio de janeiro-rj") && !bairro.includes("Rio de Janeiro - RJ") && !bairro.includes("RJ - RJ") && !bairro.includes("rio de janeiro - rj") && !bairro.includes("rj - rj") && !bairro.includes("Rio de janeiro - Rj") && !bairro.includes("Rj - Rj") && !bairro.includes("RIO DE JANEIRO - RJ") && !bairro.includes("Rio de janeiro - rj")) {
-                    alert("O Bairro da Empresa deve ser no 'Rio de Janeiro'! / Exemplo:'Tijuca, RJ, RJ'");
+                let bairro = document.getElementById("bairro").value.trim().toLowerCase().replace(/[\s\-,.]+/g, ''; // Converter para minúsculas, e remove caracteres especiais
+                
+                if (!bairro.includes("riodejaneirorj") && !bairro.includes("rjrj")) {
+                    alert("O Bairro da Empresa deve ser no município do 'Rio de Janeiro'! / Exemplo:'Centro, RJ, RJ'");
                     event.preventDefault();
                 }
             });
